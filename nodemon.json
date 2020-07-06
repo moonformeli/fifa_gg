@@ -1,0 +1,15 @@
+{
+  "restartable": "rs",
+  "ignore": [".git", "node_modules"],
+  "verbose": true,
+  "exec": "ts-node -r tsconfig-paths/register --project tsconfig.json src/index.ts",
+  "events": {
+    "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+  },
+  "watch": ["./src/index.ts"],
+  "env": {
+    "DEBUG": "Luna:*",
+    "NODE_ENV": "development"
+  },
+  "ext": "ts"
+}
