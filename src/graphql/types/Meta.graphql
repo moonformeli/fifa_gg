@@ -1,0 +1,8 @@
+type Spid {
+  id: Int!
+  name: String!
+}
+
+type Query {
+  spid: Spid
+}

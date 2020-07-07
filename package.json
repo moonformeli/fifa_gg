@@ -19,9 +19,11 @@
   },
   "dependencies": {
     "apollo-server-express": "^2.15.1",
+    "axios": "^0.19.2",
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
+    "graphql-tools": "^6.0.12",
     "nodemon": "^2.0.4"
   }
 }

@@ -9,7 +9,8 @@
   "watch": ["./src/index.ts"],
   "env": {
     "DEBUG": "Luna:*",
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "PORT": 4000
   },
   "ext": "ts"
 }

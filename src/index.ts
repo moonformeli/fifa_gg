@@ -1,25 +1,26 @@
+import path from 'path';
+
+import { loadFilesSync } from '@graphql-tools/load-files';
+import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge';
 import { ApolloServer, gql } from 'apollo-server-express';
+import axios from 'axios';
 import express from 'express';
 
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
+const typesArray = loadFilesSync(path.resolve(__dirname, './graphql/types'));
+const resolversArray = loadFilesSync(
+  path.resolve(__dirname, './graphql/resolvers')
+);
 
-// Provide resolver functions for your schema fields
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!',
-  },
-};
+const typeDefs = mergeTypeDefs(typesArray);
+const resolvers = mergeResolvers(resolversArray);
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
 const app = express();
 server.applyMiddleware({ app });
 
-app.listen({ port: 4000 }, () =>
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+app.listen({ port: process.env.PORT }, () =>
+  console.log(
+    `🚀 Server ready at http://localhost:${process.env.PORT}${server.graphqlPath}`
+  )
 );
